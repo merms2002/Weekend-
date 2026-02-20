@@ -1,33 +1,37 @@
 # SaaS LMS Dashboard
 
-This repository contains a Vite + React + TypeScript SaaS LMS dashboard.
+This repository is organized for deployment from the **repo root** while keeping the actual frontend app in `app/`.
 
-## Run locally
+## Repository layout
+
+- `app/` → Vite + React + TypeScript LMS dashboard source code.
+- `package.json` (root) → proxy scripts that run commands inside `app/`.
+- `vercel.json` and `netlify.toml` → deployment-ready defaults.
+
+## Local development
 
 ```bash
-cd app
-npm install
+npm run install:app
 npm run dev
 ```
 
-Then open the local URL shown by Vite (usually `http://localhost:5173`).
-
-## How to test it
-
-From `app/`, run these checks:
+## Build and test
 
 ```bash
 npm run build
 npm run preview
 ```
 
-- `npm run build` verifies TypeScript compilation and production bundling.
-- `npm run preview` serves the production build so you can do a final UI smoke test.
+This now works from the repository root and produces the deployable bundle in `app/dist`.
 
-### Optional static check
+## Deployment
 
-```bash
-npm run lint
-```
+### Vercel
+- Framework preset: Vite (already defined in `vercel.json`)
+- Build command: `npm run build`
+- Output directory: `app/dist`
 
-Lint is enabled and can be used during development, but the current codebase includes pre-existing lint issues from generated files.
+### Netlify
+- Build command: `npm run build`
+- Publish directory: `app/dist`
+- Config is already provided in `netlify.toml`
